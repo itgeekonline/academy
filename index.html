@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ITGEEK — Онлайн IT-школа для дітей та підлітків</title>
+<meta name="description" content="ITGEEK — онлайн школа, де діти та підлітки опановують сучасні IT-навички. З 2016 року випустили 500+ студентів. Курси програмування, дизайн, веб, ШІ, кібербезпека, Python, ігри та ін." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EFEFEF;
+    --primary:#1649FF;
+    --white:#FFFFFF;
+    --text:#0A0A0A;
+    --muted:#5d6b8a;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(22,73,255,.15);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  button{font-family:inherit}
+  .container{width:min(1200px,92%);margin:0 auto}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.2rem;border-radius:999px;border:2px solid transparent;background:var(--primary);color:#fff;font-weight:700;letter-spacing:.2px;box-shadow:var(--shadow);cursor:pointer;transition:.2s transform,.2s box-shadow}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(22,73,255,.25)}
+  .btn--light{background:var(--white);color:var(--primary);border-color:var(--primary)}
+  .btn--ghost{background:transparent;color:var(--primary);border-color:var(--primary)}
+  .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .7rem;border-radius:999px;background:#ffffffaa;color:#0a0a0a;font-weight:600;font-size:.85rem;backdrop-filter:saturate(180%) blur(8px)}
+  /* Header */
+  header{position:sticky;top:0;z-index:40;background:rgba(239,239,239,.75);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid #e5e8f3}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0}
+  .brand{display:flex;align-items:center;gap:.6rem}
+  .brand img{width:42px;height:42px}
+  .brand-name{font-weight:900;letter-spacing:.5px}
+  .nav-links{display:flex;align-items:center;gap:1rem}
+  .nav-links a{padding:.55rem .85rem;border-radius:999px;font-weight:600}
+  .nav-links a:hover{background:#ffffff}
+  .hamb{display:none;border:none;background:transparent;padding:.4rem;cursor:pointer}
+  .hamb span{display:block;width:26px;height:2px;background:#0a0a0a;margin:6px 0;border-radius:2px;transition:.25s}
+  /* Hero */
+  .hero{position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;padding:clamp(1.2rem,2.5vw,2rem) 0 2.2rem}
+  .tagline{font-weight:800;font-size:clamp(1.9rem,3.5vw,3rem);line-height:1.1;margin:.2rem 0 1rem}
+  .sub{color:var(--muted);font-size:clamp(1rem,1.4vw,1.1rem);max-width:60ch}
+  .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.1rem 0 0}
+  .hero-visual{position:relative;min-height:280px}
+  .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
+  .floating{position:absolute;border-radius:22px;background:var(--white);box-shadow:var(--shadow);padding:1rem}
+  .f1{top:10%;right:8%;transform:rotate(-4deg)}
+  .f2{bottom:6%;right:16%;transform:rotate(3deg)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.4rem}
+  .stat{background:var(--white);border-radius:var(--radius);padding:1rem 1.2rem;text-align:center;box-shadow:var(--shadow)}
+  .stat .n{font-size:1.8rem;font-weight:900;color:var(--primary)}
+
+
+:root{
+  --f1-offset-desktop: -18px; 
+  --f2-offset-desktop: 18px;  
+
+  --f1-offset-mobile: -12px;  
+  --f2-offset-mobile: 12px;
+}
+
+
+.hero-visual .f1{
+ 
+  top: -18%;
+  right: -4%;
+  transform: rotate(-4deg) translateY(var(--f1-offset-desktop));
+  z-index: 3; 
+}
+
+.hero-visual .f2{
+  bottom: -20%;
+  right: 30%;
+  transform: rotate(3deg) translateY(var(--f2-offset-desktop));
+  z-index: 3;
+}
+
+
+@media (max-width: 768px) {
+  
+  .hero-visual .f1{
+    transform: translateY(var(--f1-offset-mobile));
+    
+    margin-top: 6px;
+    z-index: 3;
+  }
+
+  .hero-visual .f2{
+    transform: translateY(var(--f2-offset-mobile));
+    margin-top: 8px;
+    z-index: 3;
+  }
+}
+
+  /* Sections */
+  section{padding:3.2rem 0}
+  h2{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:0 0 1.4rem}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+  .feature{background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}
+  .feature h3{margin:.4rem 0 .5rem}
+  /* Courses */
+  .courses{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .course{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.1rem;display:flex;flex-direction:column;gap:.7rem}
+  .course h3{margin:.2rem 0}
+  .course p{color:var(--muted);font-size:.98rem;line-height:1.45}
+  .course .actions{margin-top:auto;display:flex;gap:.6rem;flex-wrap:wrap}
+  /* Testimonials */
+  .slider{position:relative;overflow:hidden}
+  .slides{display:flex;gap:1rem;transition:transform .5s ease}
+  .tcard{min-width:calc(50% - .5rem);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
+  /* FAQ */
+  .faq{display:grid;gap:.6rem}
+  .faq-item{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.1rem;cursor:pointer;font-weight:700}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.1rem;color:var(--muted)}
+  .faq-item.open .faq-a{max-height:220px;padding:0 1.1rem 1rem}
+  /* CTA band */
+.band {
+  background: linear-gradient(135deg, var(--primary), #3466ff);
+  color: #ffffff; /* основний текст */
+  border-radius: 24px;
+  padding: 1.4rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+/* рядок всередині плашки */
+.band .row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* підтекст всередині плашки */
+.band .hint {
+  color: #ffffff;
+}
+
+  /* Footer */
+  footer{padding:2.2rem 0 3.2rem;color:#2a3555}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem}
+  .foot a{color:#2a3555}
+  .copyright{margin-top:1.2rem;color:#67728f}
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.65,.25,1)}
+  .reveal.in{opacity:1;transform:none}
+  /* Sticky floating CTA */
+  .sticky-cta{position:fixed;right:12px;bottom:12px;z-index:35}
+  .sticky-cta .btn{padding:.85rem 1.05rem}
+  /* Responsive */
+  @media (max-width:1000px){
+    .hero .wrap{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(3,1fr)}
+    .courses{grid-template-columns:repeat(2,1fr)}
+    .tcard{min-width:100%}
+    .grid-3{grid-template-columns:repeat(2,1fr)}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .nav-links{position:fixed;inset:64px 0 auto 0;background:#fff;border-bottom:1px solid #e9eef9;display:flex;flex-direction:column;padding:1rem;gap:.3rem;transform:translateY(-140%);transition:.3s;z-index:45}
+    .nav-links.show{transform:translateY(0)}
+    .hamb{display:block}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .courses,.grid-3,.grid-2{grid-template-columns:1fr}
+    .band{border-radius:18px}
+  }
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(7,18,58,.45);display:none;align-items:center;justify-content:center;padding:1rem;z-index:60}
+  .modal.show{display:flex}
+  .modal-card{background:#fff;border-radius:22px;max-width:780px;width:100%;box-shadow:var(--shadow);padding:1.2rem}
+  .modal-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.6rem}
+  .close{background:transparent;border:none;font-size:1.6rem;cursor:pointer}
+  /* Forms */
+  form{display:grid;gap:.7rem}
+  input,select,textarea{width:100%;padding:.9rem;border-radius:12px;border:1.5px solid #e2e8ff;background:#fff}
+  label{font-weight:600;font-size:.95rem}
+  .hint{font-size:.85rem;color:#5f6c8b}
+  /* Accent rings */
+  .ring{position:absolute;inset:auto auto -120px -120px;width:320px;height:320px;background:radial-gradient(closest-side, rgba(22,73,255,.2), rgba(22,73,255,0));border-radius:50%;pointer-events:none;filter:blur(4px)}
+  .ring.r2{left:auto;right:-120px;bottom:-80px}
+
+  /* === Modal curriculum content === */
+  .m-intro{margin:.2rem 0 .6rem;color:var(--muted)}
+  .m-body{max-height:min(62vh,560px);overflow:auto;border:1px solid #eef2ff;border-radius:16px;padding:.8rem}
+  .m-grid{display:grid;grid-template-columns:1fr;gap:.6rem}
+  .module{border:1px solid #eef2ff;border-radius:14px;padding:.7rem}
+  .module h4{margin:.1rem 0 .2rem;font-size:1rem}
+  .module ul{margin:.2rem 0 .3rem .9rem}
+  .module .proj{font-weight:600;margin-top:.25rem}
+  .m-badges{display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0}
+  .m-badge{font-size:.75rem;background:#f3f6ff;border:1px solid #e2e8ff;border-radius:999px;padding:.25rem .55rem}
+</style>
+
+<!-- JSON-LD (Organization) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"ITGEEK",
+  "url":"https://example.com",
+  "description":"Онлайн IT-школа для дітей та підлітків. З 2016 року випустили 500+ студентів.",
+  "logo":"https://example.com/logo.png",
+  "sameAs":[]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <img alt="Логотип ITGEEK" src="https://i.postimg.cc/yxyRk0wX/2-14-33-54.png" />
+      <span class="brand-name">ITGEEK</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">Про нас</a>
+      <a href="#benefits">Переваги</a>
+      <a href="#programs">Програми</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--ghost" href="#apply">Залишити заявку</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <span class="chip">Онлайн школа з 2016 року</span>
+        <h1 class="tagline reveal">Сучасні IT-навички для дітей та підлітків — разом з <span style="color:var(--primary)">ITGEEK</span></h1>
+        <p class="sub reveal">Навчаємо з нуля до впевнених результатів: від першого сайту і дизайну до Python, ШІ та кібербезпеки. 500+ випускників вже обрали свій шлях у технологіях.</p>
+        <div class="cta reveal">
+          <a class="btn" href="#apply">Залишити заявку</a>
+          <a class="btn btn--light" href="#programs">Дивитись програми</a>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><div class="n" data-counter="2016">2016</div><div>рік старту</div></div>
+          <div class="stat"><div class="n" data-counter="500">500+</div><div>випускників</div></div>
+          <div class="stat"><div class="n" data-counter="9">9</div><div>напрямів</div></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="ring"></div><div class="ring r2"></div>
+        <div class="floating f1">
+          <div class="card">
+            <strong>Live-уроки</strong>
+            <p class="hint">Малі групи 6–10 учнів</p>
+          </div>
+        </div>
+        <div class="floating f2">
+          <div class="card">
+            <strong>Практика</strong>
+            <p class="hint">Проєкти в портфоліо з першого місяця</p>
+          </div>
+        </div>
+        <img alt="Ілюстрація навчання" src="https://i.postimg.cc/T2B1mWg8/pexels-jonathanborba-17771091.jpg" style="border-radius:22px;box-shadow:var(--shadow)">
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container grid-2">
+      <div class="feature reveal">
+        <h2>Про ITGEEK</h2>
+        <p>Ми онлайн-школа, де діти та підлітки навчаються сучасним IT-навичкам. Працюємо з <strong>2016</strong> року і за цей час випустили <strong>500+ студентів</strong>. Наша місія — надихати молодь знаходити своє покликання в ІТ, давати практичні знання та допомагати будувати шлях до університетів, кар’єри або власного стартапу.</p>
+      </div>
+      <div class="feature reveal">
+        <h3>Як ми навчаємо</h3>
+        <ul>
+          <li><strong>Проєктний підхід:</strong> менше теорії — більше практики.</li>
+          <li><strong>Трек для кожного:</strong> від базових курсів до профільних напрямів.</li>
+          <li><strong>Менторинг:</strong> індивідуальні фідбеки та підтримка.</li>
+          <li><strong>Ком’юніті:</strong> хакатони, челленджі, виступи.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="container">
+      <h2 class="reveal">Чому нас обирають</h2>
+      <div class="grid-3">
+        <div class="feature reveal"><h3>Практика з першого дня</h3><p>Кожен модуль завершується міні-проєктом — портфоліо зростає разом з навичками.</p></div>
+        <div class="feature reveal"><h3>Наставники-практики</h3><p>Викладачі з комерційним досвідом у розробці, дизайні, кібербезпеці та ШІ.</p></div>
+        <div class="feature reveal"><h3>Гнучкий формат</h3><p>Онлайн-заняття у зручний час, записи уроків, дзеркала матеріалів.</p></div>
+        <div class="feature reveal"><h3>Відповідно віку</h3><p>Програми для 8–10, 11–14 та 15–17 років: темп та приклади під вік.</p></div>
+        <div class="feature reveal"><h3>Підготовка до майбутнього</h3><p>Допомагаємо з конкурсами, вступом у ВНЗ, першим фрилансом чи стартапом.</p></div>
+        <div class="feature reveal"><h3>Батькам прозоро</h3><p>Щотижневі звіти прогресу та демо-дні з презентацією робіт.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs">
+    <div class="container">
+      <h2 class="reveal">Програми навчання</h2>
+      <div class="courses">
+        <!-- 1 -->
+        <article class="course reveal">
+          <span class="chip">Старт</span>
+          <h3>Основи програмування</h3>
+          <p>Логіка, змінні, умови, цикли, алгоритмічне мислення. Перші міні-ігри та задачі.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Основи програмування" data-desc="З нуля розберемося з базовими концепціями: типи даних, змінні, умови, цикли, функції. Створимо кілька міні-ігор, навчимося мислити алгоритмами.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="course reveal">
+          <span class="chip">Креатив</span>
+          <h3>Основи дизайну</h3>
+          <p>Композиція, колір, типографія. Постери, банери, роботи для портфоліо у Figma/Canva.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Основи дизайну" data-desc="Навчимося баченню та смаку: сітки, відступи, контраст, робота з кольором і шрифтом. Практика у Figma/Canva.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="course reveal">
+          <span class="chip">Web</span>
+          <h3>Веб-дизайн та верстка (HTML/CSS/JS)</h3>
+          <p>Дизайн у Figma → адаптивна верстка → інтерактивність на JS. Публікація сайту.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Веб-дизайн та верстка (HTML/CSS/JS)" data-desc="Пройдемо повний цикл: дизайн у Figma, семантична верстка HTML5, сучасний CSS, базовий JavaScript та деплой сайту.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="course reveal">
+          <span class="chip">AI</span>
+          <h3>Сучасні інструменти ШІ</h3>
+          <p>ChatGPT, генерація зображень, автоматизація навчання та проєктів з етичним фокусом.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Сучасні інструменти ШІ" data-desc="Вчимось ефективно користуватися ШІ-інструментами для навчання, прототипування і творчих задач. Етика та безпека — обов’язково.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 5 -->
+        <article class="course reveal">
+          <span class="chip">Security</span>
+          <h3>Кібербезпека</h3>
+          <p>Безпечна поведінка онлайн, паролі, фішинг, основи мереж і етичний підхід.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Кібербезпека" data-desc="Вивчимо загрози, тренуємося розпізнавати атаки, налаштовуємо 2FA, робимо резервні копії, знайомимось з мережами.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 6 -->
+        <article class="course reveal">
+          <span class="chip">Digital</span>
+          <h3>Цифрова грамотність</h3>
+          <p>Офісні інструменти, хмарні сервіси, етика та продуктивність у цифровому світі.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Цифрова грамотність" data-desc="Системно опануємо інструменти для навчання і життя: документи, таблиці, презентації, хмари, кібергігієна.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 7 -->
+        <article class="course reveal">
+          <span class="chip">Design</span>
+          <h3>Графічний дизайн</h3>
+          <p>Ілюстрації, айдентика, ретуш. Практика у Photoshop/Illustrator, власні проєкти.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Графічний дизайн" data-desc="Опановуємо композицію, роботу з формою та символом, ілюстрації, логотипи, ретуш та підготовку макетів.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 8 -->
+        <article class="course reveal">
+          <span class="chip">GameDev</span>
+          <h3>Створення ігор (Construct)</h3>
+          <p>Прототипи 2D-ігор без коду, логіка і механіки, публікація та демонстрація.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Створення ігор (Construct)" data-desc="Збираємо ігри у Construct: анімації, колізії, рівні, UI. Результат — ігрове демо, яким можна ділитися.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+        <!-- 9 -->
+        <article class="course reveal">
+          <span class="chip">Python</span>
+          <h3>Python</h3>
+          <p>Базовий синтаксис, робота з даними, прості боти та міні-проєкти для портфоліо.</p>
+          <div class="actions">
+            <button class="btn btn--light more" data-title="Python" data-desc="Синтаксис, модулі, файли, бібліотеки для даних. Зробимо консольні застосунки, бота або міні-сервіс.">Дізнатися більше</button>
+            <a class="btn" href="#apply">Записатися</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="container">
+      <h2 class="reveal">Відгуки батьків та студентів</h2>
+      <div class="slider reveal">
+        <div class="slides" id="slides">
+          <div class="tcard">
+            <strong>Олена, мама 12-річного Дениса</strong>
+            <p>“За три місяці син зробив свій перший сайт і презентував його на демо-дні. Дуже сподобалась підтримка викладача.”</p>
+          </div>
+          <div class="tcard">
+            <strong>Назар, 15 років</strong>
+            <p>“Курс Python допоміг виграти шкільний хакатон. Тепер готуюсь до вступу на комп’ютерні науки.”</p>
+          </div>
+          <div class="tcard">
+            <strong>Ірина, мама 10-річної Марти</strong>
+            <p>“Донька захопилась дизайном, зробила серію постерів. Дуже круті завдання та атмосфера.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Band CTA -->
+  <section>
+    <div class="container band reveal">
+      <div class="row">
+        <div>
+          <h3 style="margin:.2rem 0">Почніть навчання вже цього тижня</h3>
+          <p class="hint" style="margin:0">Залиште заявку — підберемо програму під вік та інтереси.</p>
+        </div>
+        <a class="btn btn--light" href="#apply">Залишити заявку</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="reveal">Поширені запитання</h2>
+      <div class="faq">
+        <div class="faq-item reveal">
+          <div class="faq-q">Який вік учнів?<span>+</span></div>
+          <div class="faq-a"><p>Маємо групи 8–10, 11–14 та 15–17 років. Підбір — за результатом короткої співбесіди.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Скільки триває заняття?<span>+</span></div>
+          <div class="faq-a"><p>60–90 хв залежно від курсу. Домашні завдання перевіряє ментор із фідбеком.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Чи є записи уроків?<span>+</span></div>
+          <div class="faq-a"><p>Так, доступні у вашому кабінеті разом із матеріалами.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply -->
+  <section id="apply">
+    <div class="container">
+      <h2 class="reveal">Залишити заявку</h2>
+      <div class="grid-2">
+        <form class="feature reveal" id="applyForm">
+          <div>
+            <label>Ім’я дитини</label>
+            <input required name="child" placeholder="Ім’я" />
+          </div>
+          <div>
+            <label>Вік</label>
+            <input required type="number" min="7" max="18" name="age" placeholder="10" />
+          </div>
+          <div>
+            <label>Батьківський телефон</label>
+            <input required type="tel" name="phone" placeholder="+380..." />
+          </div>
+          <div>
+            <label>Курс</label>
+            <select name="course" required>
+              <option value="">Оберіть програму…</option>
+              <option>Основи програмування</option>
+              <option>Основи дизайну</option>
+              <option>Веб-дизайн та верстка (HTML/CSS/JS)</option>
+              <option>Сучасні інструменти ШІ</option>
+              <option>Кібербезпека</option>
+              <option>Цифрова грамотність</option>
+              <option>Графічний дизайн</option>
+              <option>Створення ігор (Construct)</option>
+              <option>Python</option>
+            </select>
+          </div>
+          <div>
+            <label>Коментар (необов’язково)</label>
+            <textarea rows="3" name="msg" placeholder="Коротко про інтереси та цілі"></textarea>
+          </div>
+          <button class="btn" type="submit" id="applyBtn">Відправити</button>
+          <p class="hint">Натискаючи “Відправити”, ви погоджуєтесь з обробкою персональних даних.</p>
+        </form>
+        <div class="feature reveal">
+          <h3>Що буде далі?</h3>
+          <ol>
+            <li>Зателефонуємо, щоб уточнити рівень та інтереси.</li>
+            <li>Підберемо групу та надішлемо розклад.</li>
+            <li>Пробне заняття — безкоштовно.</li>
+          </ol>
+          <img alt="Навчання ITGEEK" src="https://i.postimg.cc/SjFy53Pd/pexels-karolina-grabowska-6345300.jpg" style="border-radius:14px;margin-top:.6rem">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:.6rem">
+          <img alt="Логотип ITGEEK" src="https://i.postimg.cc/yxyRk0wX/2-14-33-54.png" />
+          <strong class="brand-name">ITGEEK</strong>
+        </div>
+        <p class="hint">Онлайн школа для дітей і підлітків. Допомагаємо знайти покликання в IT з 2016 року.</p>
+      </div>
+      <div>
+        <h4>Навігація</h4>
+        <a href="#programs">Програми</a><br/>
+        <a href="#reviews">Відгуки</a><br/>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Контакти</h4>
+        <a href="tel:+380000000000">+380 (95) 447-93-37</a><br/>
+        <a href="mailto:hello@itgeek.school">Instagram: @itgeek.academy</a>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> ITGEEK. Усі права захищено.</div>
+  </div>
+</footer>
+
+<!-- Floating CTA -->
+<div class="sticky-cta">
+  <a class="btn" href="#apply">Залишити заявку</a>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="mTitle">Програма</h3>
+      <button class="close" id="mClose" aria-label="Закрити">✕</button>
+    </div>
+    <p id="mIntro" class="m-intro hint"></p>
+    <div id="mBody" class="m-body">
+      <!-- динамічно будується JS-ом -->
+    </div>
+    <div class="m-badges" id="mBadges"></div>
+    <div style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap">
+      <a class="btn" href="#apply">Записатися</a>
+      <button class="btn btn--light" id="mOk">Гаразд</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const hamb = document.getElementById('hamb');
+  const navLinks = document.getElementById('navLinks');
+  hamb?.addEventListener('click', ()=> navLinks.classList.toggle('show'));
+  navLinks?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('show')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    })
+  },{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Counters
+  const counters = document.querySelectorAll('[data-counter]');
+  counters.forEach(el=>{
+    const target = +el.getAttribute('data-counter');
+    let n = 0, step = Math.max(1, Math.round(target/60));
+    const t = setInterval(()=>{
+      n += step; if(n>=target){ n = target; clearInterval(t); }
+      el.textContent = n + (el.textContent.includes('+') ? '+' : '');
+    }, 18);
+  });
+
+  // Testimonials simple auto-slider
+  const slides = document.getElementById('slides');
+  let slideIndex = 0;
+  setInterval(()=>{
+    slideIndex = (slideIndex+1)%3;
+    slides.style.transform = `translateX(${-slideIndex* (slides.children[0].offsetWidth + 16)}px)`;
+  }, 3500);
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click', ()=> q.parentElement.classList.toggle('open'));
+  });
+
+  /* ====== 1) Навчальні плани для модального вікна (8 місяців) ====== */
+  const curricula = {
+    'Основи програмування': [
+      {m:'Місяць 1. Алгоритмічне мислення', t:['Що таке алгоритм','Лінійні програми','Ввід/вивід'], p:'Міні-гра "Вгадай число"'},
+      {m:'Місяць 2. Змінні та типи', t:['Числа, рядки, булеві значення','Оператори','Помилки та дебаг'], p:'Консольний калькулятор'},
+      {m:'Місяць 3. Умови', t:['if/else, вкладені умови','Логічні вирази','Гілкування сценаріїв'], p:'Текстовий квест'},
+      {m:'Місяць 4. Цикли', t:['for/while','Лічильники та ітерації','Генерація патернів'], p:'Малюємо фігури в консолі/код-арт'},
+      {m:'Місяць 5. Масиви/списки', t:['Індекси','Прохід циклами','Пошук/мін/макс'], p:'Статистика оцінок'},
+      {m:'Місяць 6. Функції', t:['Аргументи та повернення','Розбиття коду на блоки','Тестування'], p:'Бібліотека утиліт'},
+      {m:'Місяць 7. Файли', t:['Зчитування/запис','Формат CSV/JSON','Малі дані'], p:'Чек-лист завдань/щоденник'},
+      {m:'Місяць 8. Підсумковий проєкт', t:['Планування','Презентація','Оформлення портфоліо'], p:'Власна міні-гра або утиліта'}
+    ],
+    'Основи дизайну': [
+      {m:'Місяць 1. Дизайн-мислення', t:['Принципи гештальту','Контраст/ієрархія','Референси'], p:'Мудборд і сет постерів'},
+      {m:'Місяць 2. Композиція та сітки', t:['Ритм і баланс','Сітки 8pt','Відступи'], p:'Афіша події'},
+      {m:'Місяць 3. Колір', t:['Колірні схеми','Доступність','Тренди'], p:'Палітра + 3 банери'},
+      {m:'Місяць 4. Типографія', t:['Пари шрифтів','Мікротипографіка','Титри/плашки'], p:'Лендінг-герой у Figma'},
+      {m:'Місяць 5. Іконки та ілюстрації', t:['Прості форми','Символіка','Експорт'], p:'Набір іконок'},
+      {m:'Місяць 6. Брендинг', t:['Логотип','Айдентика','Гайдлайни'], p:'Міні-брендбук'},
+      {m:'Місяць 7. Макетування', t:['Компоненти','Автолейаути','Прототип'], p:'Мультекранний макет'},
+      {m:'Місяць 8. Портфоліо', t:['Відбір робіт','Опис кейсів','Презентація'], p:'Behance/Dribbble сторінка'}
+    ],
+    'Веб-дизайн та верстка (HTML/CSS/JS)': [
+      {m:'Місяць 1. Основи HTML5', t:['Семантика','Посилання/зображення','Форми'], p:'Візитка-сторінка'},
+      {m:'Місяць 2. CSS базовий', t:['Селектори','Блокова модель','Шрифти'], p:'Стайлінг візитки'},
+      {m:'Місяць 3. Макети', t:['Flexbox','Grid','Адаптивність'], p:'Лендінг секції'},
+      {m:'Місяць 4. Дизайн у Figma', t:['Компоненти','Сітки','Експорт'], p:'UI-макет лендінгу'},
+      {m:'Місяць 5. JS основи', t:['Змінні/умови/цикли','DOM','Події'], p:'Меню-бургер, слайдер'},
+      {m:'Місяць 6. Практика', t:['Форми і валідація','Анімації CSS/JS','Оптимізація'], p:'Міні-сайт з формою'},
+      {m:'Місяць 7. Публікація', t:['Git/GitHub','Хостінг (GitHub Pages/Netlify)','SEO-основи'], p:'Деплой сайту'},
+      {m:'Місяць 8. Фінальний проєкт', t:['План/тз','Верстка + інтерактив','Демо-день'], p:'Повний лендінг/мініблог'}
+    ],
+    'Сучасні інструменти ШІ': [
+      {m:'Місяць 1. Основи AI', t:['Моделі та промптинг','Етика','Обмеження'], p:'Промпт-картки'},
+      {m:'Місяць 2. Тексти', t:['Рерайт/резюме','План уроків','Шаблони'], p:'Асистент навчання'},
+      {m:'Місяць 3. Зображення', t:['Генерація','Композиції','Правки'], p:'Серія постерів'},
+      {m:'Місяць 4. Дані та таблиці', t:['Формули','Автоматизації','Аналіз'], p:'Автозвіт у Sheets'},
+      {m:'Місяць 5. Інструменти без коду', t:['Make/Zapier базово','Боти без коду','Вебхуки'], p:'Автопублікація контенту'},
+      {m:'Місяць 6. Прототипування', t:['Промпт-інженерія','Ланцюжки підказок','Валідація'], p:'Чат-асистент для школи'},
+      {m:'Місяць 7. Відповідальне використання', t:['Авторське право','Приватність','Безпека'], p:'Етичний чекліст'},
+      {m:'Місяць 8. Фінальний кейс', t:['Проєкт від ідеї до демо','Пітч-дек','Презентація'], p:'AI-помічник або генератор'}
+    ],
+    'Кібербезпека': [
+      {m:'Місяць 1. Основи безпеки', t:['Загрози','Паролі','2FA'], p:'Менеджер паролів + 2FA'},
+      {m:'Місяць 2. Соціальна інженерія', t:['Фішинг','Скам','Фейки'], p:'Антифішинг-гайд'},
+      {m:'Місяць 3. Мережі 101', t:['IP/DNS','Wi‑Fi безпека','VPN'], p:'Мережева схема дому'},
+      {m:'Місяць 4. Пристрої та дані', t:['Резервні копії','Шифрування','Оновлення'], p:'План резервування'},
+      {m:'Місяць 5. Веббезпека', t:['HTTPS/SSL','Куки/сесії','XSS базово'], p:'Чекліст браузерної безпеки'},
+      {m:'Місяць 6. Етика', t:['Правила CTF','Bug bounty огляд','Відповідальне розкриття'], p:'Кодекс етичного хакера'},
+      {m:'Місяць 7. Інструменти', t:['Sniffer/Analyzer огляд','Парольні політики','Журнали подій'], p:'Лаб: моніторинг мережі (демо)'},
+      {m:'Місяць 8. Проєкт', t:['Аудит власних акаунтів','Звіт','Презентація'], p:'Особистий план кібергігієни'}
+    ],
+    'Цифрова грамотність': [
+      {m:'Місяць 1. Організація роботи', t:['Хмари','Папки/іменування','Бекапи'], p:'Структура Google Drive'},
+      {m:'Місяць 2. Документи', t:['Форматування','Коментарі','Шаблони'], p:'Оформлений реферат'},
+      {m:'Місяць 3. Таблиці', t:['Формули','Діаграми','Фільтри'], p:'Планер навчання'},
+      {m:'Місяць 4. Презентації', t:['Слайд-дек','Візуал','Пітч'], p:'Презентація проєкту'},
+      {m:'Місяць 5. Комунікація', t:['Етикет','Календар','Збори'], p:'Планер у Calendar'},
+      {m:'Місяць 6. Безпека online', t:['Паролі/2FA','Фішинг','Кібергігієна'], p:'Чекліст безпеки'},
+      {m:'Місяць 7. Медійна грамотність', t:['Фактчек','Авторське право','Ліцензії'], p:'Пам’ятка дослідника'},
+      {m:'Місяць 8. Портфоліо', t:['Збір робіт','Посилання','Опис кейсів'], p:'Односторінкове портфоліо'}
+    ],
+    'Графічний дизайн': [
+      {m:'Місяць 1. Photoshop основи', t:['Інтерфейс','Шари/маски','Ретуш'], p:'Колаж + ретуш портрету'},
+      {m:'Місяць 2. Illustrator', t:['Вектори','Пен/анкери','Фігури'], p:'Сет іконок'},
+      {m:'Місяць 3. Колір і типографія', t:['Палітри','Пари шрифтів','Друк/експорт'], p:'Афіша/обкладинка'},
+      {m:'Місяць 4. Логотипи', t:['Бриф','Ескізи','Презентація'], p:'Логотип + варіації'},
+      {m:'Місяць 5. Соцмережі', t:['Фід/сторіс','Контент-план','Автоматизація'], p:'Пак дописів'},
+      {m:'Місяць 6. Верстка', t:['Сітки','Препрес','PDF'], p:'Флаєр/буклет'},
+      {m:'Місяць 7. Motion basics', t:['GIF','Кадри','Експорт'], p:'Анімований банер'},
+      {m:'Місяць 8. Портфоліо', t:['Кейс-сторі','Макети в мокапах','Пітч'], p:'Оформлене портфоліо'}
+    ],
+    'Створення ігор (Construct)': [
+      {m:'Місяць 1. Базові механіки', t:['Інтерфейс Construct','Спрайти','Події'], p:'Прототип платформеру'},
+      {m:'Місяць 2. Анімації та фізика', t:['Колізії','Гравітація','Керування'], p:'Двіжок персонажа'},
+      {m:'Місяць 3. Рівні та UI', t:['Тайли','HUD','Екрани'], p:'2-3 рівні гри'},
+      {m:'Місяць 4. Вороги і предмети', t:['Штучний інтелект базово','Бустери','Колекції'], p:'Механіки ворогів/бонусів'},
+      {m:'Місяць 5. Звук та ефекти', t:['SFX','Музика','Партікли'], p:'Аудіо і vfx пакет'},
+      {m:'Місяць 6. Баланс', t:['Складність','Ітерації','Тести'], p:'Таблиця балансу'},
+      {m:'Місяць 7. Публікація', t:['Експорт Web','Хостинг','Описи'], p:'Веб-демо гри'},
+      {m:'Місяць 8. Джем', t:['Пітч','Трейлер','Демо-день'], p:'Фінальна презентація'}
+    ],
+    'Python': [
+      {m:'Місяць 1. Синтаксис', t:['print/input','Типи даних','Оператори'], p:'Консольні задачі'},
+      {m:'Місяць 2. Управління потоком', t:['if/elif/else','Цикли','List/dict'], p:'Міні-гра в консолі'},
+      {m:'Місяць 3. Функції та модулі', t:['def','Імпорт','venv'], p:'Набір утиліт'},
+      {m:'Місяць 4. Файли та помилки', t:['read/write','CSV/JSON','try/except'], p:'Телефонна книга'},
+      {m:'Місяць 5. Дані', t:['pandas базово','Графіки (matplotlib)','Парсинг'], p:'Міні-аналітика csv'},
+      {m:'Місяць 6. API та боти', t:['HTTP запити','Telegram Bot API','env'], p:'Простий телеграм-бот'},
+      {m:'Місяць 7. Web (огляд)', t:['Flask базово','Шаблони','Деплой'], p:'Міні-сайт/сервіс'},
+      {m:'Місяць 8. Фінальний проєкт', t:['ТЗ','Код-ревʼю','Презентація'], p:'Проєкт під інтерес студента'}
+    ]
+  };
+
+  function buildCurriculumHTML(title){
+    const plan = curricula[title];
+    if(!plan) return '<div class="hint">Скоро додамо детальний план.</div>';
+    const items = plan.map((x,i)=>{
+      const topics = x.t.map(t=>`<li>${t}</li>`).join('');
+      return `<div class="module"><h4>${x.m}</h4><ul>${topics}</ul><div class="proj">Проєкт: ${x.p}</div></div>`;
+    }).join('');
+    return `<div class="m-grid">${items}</div>`;
+  }
+
+  // Modal for "Дізнатися більше"
+  const modal = document.getElementById('modal');
+  const mTitle = document.getElementById('mTitle');
+  const mIntro = document.getElementById('mIntro');
+  const mBody  = document.getElementById('mBody');
+  const mBadges= document.getElementById('mBadges');
+  const openModal = (title,desc)=>{
+    mTitle.textContent=title;
+    mIntro.textContent=desc || '';
+    mBody.innerHTML = buildCurriculumHTML(title);
+    mBadges.innerHTML = '<span class="m-badge">8 місяців</span><span class="m-badge">міні‑проєкти щомісяця</span><span class="m-badge">демо‑день</span>';
+    modal.classList.add('show');
+  }
+  const closeModal = ()=> modal.classList.remove('show');
+  document.querySelectorAll('.more').forEach(btn=>{
+    btn.addEventListener('click', ()=> openModal(btn.dataset.title, btn.dataset.desc));
+  });
+  document.getElementById('mClose').addEventListener('click', closeModal);
+  document.getElementById('mOk').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+ 
+
+  const TG_BOT_TOKEN = ''; 
+  const TG_CHAT_ID   = '';   
+  const TG_API = (method)=>`https://api.telegram.org/bot${TG_BOT_TOKEN}/${method}`;
+
+
+
+  async function sendToTelegram(message){
+    const res = await fetch(TG_API('sendMessage'),{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: message,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true
+      })
+    });
+    if(!res.ok){
+      const txt = await res.text();
+      throw new Error('Telegram API error: '+txt);
+    }
+    return res.json();
+  }
+
+  function escapeHtml(str){
+    return String(str||'').replace(/[&<>]/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[s]));
+  }
+
+  // Apply form (production-ready UX)
+  const form = document.getElementById('applyForm');
+  const btn  = document.getElementById('applyBtn');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    // Проста валідація телефону UA
+    const phoneOk = /^\+?\d[\d\s\-()]{7,}$/.test(data.phone);
+    if(!phoneOk){
+      alert('Перевірте телефон. Формат: +380...');
+      return;
+    }
+
+    const message = `📩 <b>Нова заявка ITGEEK</b>\n`+
+      `👤 Дитина: <b>${escapeHtml(data.child)}</b>\n`+
+      `🎂 Вік: <b>${escapeHtml(data.age)}</b>\n`+
+      `📞 Телефон: <b>${escapeHtml(data.phone)}</b>\n`+
+      `📚 Курс: <b>${escapeHtml(data.course)}</b>\n`+
+      (data.msg?`📝 Коментар: ${escapeHtml(data.msg)}`:'');
+
+    btn.disabled = true; btn.textContent = 'Відправляємо…';
+    try{
+      await sendToTelegram(message);
+      alert('Дякуємо! Заявку надіслано. Ми скоро зв’яжемося.');
+      form.reset();
+    }catch(err){
+      console.error(err);
+      alert('На жаль, не вдалося надіслати заявку. Спробуйте ще раз або напишіть нам в Instagram: Instagram: @itgeek.academy Дякуємо ❤️');
+    }finally{
+      btn.disabled = false; btn.textContent = 'Відправити';
+    }
+  });
+
+</script>
+</body>
+</html>
